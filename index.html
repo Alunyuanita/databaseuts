@@ -4,153 +4,56 @@
     <title>API Praktikum</title>
     <style>
         body {
-            font-family: Helvetica, sans-serif;
-            font-size: 16px;
-            background-color: #363062;
-            text-align: center;
-            color: #818FB4;
-            padding: 20px;
-        }
+        font-family: Helvetica, sans-serif;
+        font-size: 16px;
+        background-color: #F5E8C7; 
+        text-align: left; 
+        color: #363062; 
+        padding: 20px;
+    }
 
-        h1 {
-            text-align: center;
-            font-weight: 800;
-            font-size: 36px;
-            color: #435585;
-        }
+    #newForm {
+        font-family: 'Helvetica', sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #F5E8C7; 
+        border-radius: 12px;
+        text-align: center; 
+    }
 
-        label {
-            font-weight: bold;
-            color: #818FB4;
-        }
+    label {
+        font-weight: bold;
+        color: #363062; 
+    }
 
-        #text-field {
-            font-family: Helvetica, sans-serif;
-            width: 50%;
-            padding: 12px;
-            margin: 10px auto;
-            display: block;
-            background-color: #435585;
-            color: #000000;
-            border-radius: 12px;
-            border: 3px solid #818FB4;
-        }
+    input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #818FB4;
+        border-radius: 8px;
+        box-sizing: border-box;
+        background-color: #F5E8C7; 
+        color: #363062;
+    }
 
-        button {
-            font-family: Helvetica, sans-serif;
-            font-weight: bold;
-            display: block;
-            margin: 0 auto;
-            padding: 12px 24px;
-            background-color: #818FB4;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 12px;
-        }
-
-        button:hover {
-            background-color: #363062;
-        }
-
-        #newForm {
-            font-family: 'Helvetica', sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #435585;
-            border-radius: 12px;
-        }
-
-        h5{
-            display: block;
-            margin-top: 8px;
-            margin-bottom: 8px;
-            color:#818FB4;
-            font-size:larger;
-        }
-
-        input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #818FB4;
-            border-radius: 8px;
-            box-sizing: border-box;
-            background-color: #363062;
-            color: #818FB4;
-        }
-
-        input[type="button"] {
-            background-color: #818FB4;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 12px;
-            width:20%;
-        }
-
-        input[type="button"]:hover {
-            background-color: #363062;
-        }
-
-        #table-container .table-controls-right button {
-            padding: 10px 20px;
-            background-color: #818FB4;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-            margin-left: 10px;
-        }
-
-        #table-container .table-controls-right button:hover {
-            background-color: #363062;
-        }
-
-        #table-container .table-controls-right input {
-            width: 20%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #818FB4;
-            border-radius: 8px;
-            box-sizing: border-box;
-            background-color: #435585;
-            color: #818FB4;
-        }
-
-        #table-container .table-controls-right span {
-            color:#818FB4;
-            font-family: Helvetica, sans-serif;
-            font-weight: bold;
-        }
-
-        table {
-            font-family: Helvetica, sans-serif;
-            width: 100%;
-            margin-top: 10px;
-            border-radius: 12px;
-            border-collapse: collapse;
-        }
-
-        th, td, tr {
-            border: 2px solid #818FB4;
-            padding: 10px;
-            text-align: center;
-        }
-
-        th {
-            border: 2px solid #818FB4;
-            background-color: #363062;
-        }
+    input[type="button"] {
+        background-color: #818FB4;
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 12px;
+        width: 20%;
+    }
     </style>
 </head>
 <body>
     <h1>API Praktikum</h1>
     <label for="text-field" autocomplete="off">URL Link:</label><br>
-    <input type="text" id="text-field" name="URL" placeholder="Masukkan URL Link"><br>
+    <input type="text" id="text-field" name="URL" placeholder="Masukkan URL"><br>
     <button onclick="fetchData()">Submit</button><br>
     <form id="newForm">
         <h5>Input Datamu</h5>
@@ -223,7 +126,7 @@
             const headerRow = rows.shift();
         
             rows.sort((a, b) => {
-                const valueA = a.getElementsByTagName('td')[1].textContent; // Index 2 corresponds to the F_Name column
+                const valueA = a.getElementsByTagName('td')[1].textContent; 
                 const valueB = b.getElementsByTagName('td')[1].textContent;
                 return valueA.localeCompare(valueB);
             });

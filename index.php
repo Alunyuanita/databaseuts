@@ -1,30 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Data Coffee</h1>
-    <?php
-    echo '<table border="1">';
-    $start_row = 1;
-    if (($csv_file = fopen("datakopi.csv", "r")) !== FALSE) {
-        while (($read_data = fgetcsv($csv_file, 1000, ",")) !== FALSE) {
-            $column_count = count($read_data);
-            echo '<tr>';
-            $start_row++;
-            for ($c=0; $c < $column_count; $c++) {
-                echo "<td>".$read_data[$c] . "</td>";
-            }
-            echo '</tr>';
+<?php
+
+function csvToJson($csvUrl) {
+    $csvData = [];
+    
+    if (($handle = fopen($csvUrl, 'r')) !== false) {
+        while (($row = fgetcsv($handle)) !== false) {
+            $csvData[] = $row;
         }
-        fclose($csv_file);
-    } else {
-        echo "Error opening the CSV file.";
+        fclose($handle);
     }
-    echo '</table>';
-    ?>
-</body>
-</html>
+
+    // Assuming the first row of the CSV contains the column headers
+    $headers = array_shift($csvData);
+
+    $jsonArray = [];
+
+    foreach ($csvData as $row) {
+        $jsonArrayItem = array();
+        for ($i = 0; $i < count($row); $i++) {
+            $jsonArrayItem[$headers[$i]] = $row[$i];
+        }
+        $jsonArray[] = $jsonArrayItem;
+    }
+
+    return json_encode($jsonArray);
+}
+
+$csvUrl = '';
+$jsonData = csvToJson($csvUrl);
+
+// Set the content type to JSON
+header('Content-Type: application/json');
+
+// Output the JSON data
+echo $jsonData;
+?>

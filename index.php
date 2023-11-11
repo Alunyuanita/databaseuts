@@ -10,7 +10,7 @@
     <?php
     echo '<table border="1">';
     $start_row = 1;
-    if (($csv_file = fopen("data kopi.csv", "r")) !== FALSE) {
+    if (($csv_file = fopen("datakopi.csv", "r")) !== FALSE) {
       while (($read_data = fgetcsv($csv_file, 1000, ",")) !== FALSE) {
         $column_count = count($read_data);
         echo '<tr>';

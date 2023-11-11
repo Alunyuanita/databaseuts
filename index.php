@@ -1,24 +1,30 @@
-<?php
-function csvToJson($fname) {
-    if (!($fp = fopen($fname, 'r'))) {
-        die("Can't open file...");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Data Coffee</h1>
+    <?php
+    echo '<table border="1">';
+    $start_row = 1;
+    if (($csv_file = fopen("datakopi.csv", "r")) !== FALSE) {
+        while (($read_data = fgetcsv($csv_file, 1000, ",")) !== FALSE) {
+            $column_count = count($read_data);
+            echo '<tr>';
+            $start_row++;
+            for ($c=0; $c < $column_count; $c++) {
+                echo "<td>".$read_data[$c] . "</td>";
+            }
+            echo '</tr>';
+        }
+        fclose($csv_file);
+    } else {
+        echo "Error opening the CSV file.";
     }
-    
-    $key = fgetcsv($fp,"1024",",");
-    
-    $json = array();
-        while ($row = fgetcsv($fp,"1024",",")) {
-        $json[] = array_combine($key, $row);
-    }
-    
-    fclose($fp);
-    
-    return json_encode($json);
-}
-
-$jsondata = csvToJson("datakopi.csv");
-
-header('Content-Type: application/json');
-
-echo $jsonData;
-?>
+    echo '</table>';
+    ?>
+</body>
+</html>
